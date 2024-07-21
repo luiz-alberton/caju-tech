@@ -16,6 +16,10 @@ public class Amount {
     value = BigDecimal.valueOf(newAmount).divide(BigDecimal.valueOf(Math.pow(10, SCALE)));
   }
 
+  public Amount(BigDecimal newAmount) {
+    value = newAmount;
+  }
+
   public Long toLong() {
     return value.multiply(BigDecimal.valueOf(Math.pow(10, SCALE))).longValue();
   }

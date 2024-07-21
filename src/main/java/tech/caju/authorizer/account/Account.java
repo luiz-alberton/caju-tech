@@ -30,4 +30,8 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "account")
     private List<Balance> balances;
 
+
+    public Account(Long accountId) {
+        this.id = accountId;
+    }
 }

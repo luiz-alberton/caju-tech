@@ -11,6 +11,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import tech.caju.authorizer.balance.Balance;
 import tech.caju.authorizer.classification.Classification;
@@ -20,6 +21,7 @@ import tech.caju.authorizer.classification.Classification;
 @SequenceGenerator(name = "category", sequenceName = "cat_seq", allocationSize = 1)
 @Getter
 @Setter
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -34,4 +36,7 @@ public class Category {
     @OneToOne(mappedBy = "category")
     private Balance balance;
 
+  public Category(Long categoryId) {
+    this.id = categoryId;
+  }
 }

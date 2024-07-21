@@ -2,6 +2,7 @@ package tech.caju.authorizer.authorize;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.in;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -88,6 +89,8 @@ public class TransactionControllerTest {
         }
         """;
 
+    var init = System.currentTimeMillis();
+    System.out.println("Init: " + init);
     given()
         .contentType(ContentType.JSON)
         .body(request)
@@ -95,6 +98,7 @@ public class TransactionControllerTest {
         .then()
         .statusCode(200)
         .body("code", equalTo("00"));
+    System.out.println("Finish: " + (System.currentTimeMillis() - init));
 
     bal = balanceService.getBalanceFromAccountByMcc(1L, "5811").get();
     Assertions.assertThat(bal.getAmount().toLong()).isEqualTo(9000L);

@@ -1,5 +1,6 @@
 package tech.caju.authorizer.exceptions;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,13 +13,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-  @ExceptionHandler(value = {InsuficientAmountException.class, NoBalanceFoundException.class})
+  @ExceptionHandler(value = {RuntimeException.class, InsuficientAmountException.class})
   protected ResponseEntity<Object> handleException(RuntimeException ex, WebRequest request) {
 
     var body = "{\"code\": \"%s\"}";
-    if (ex instanceof InsuficientAmountException) {
-      body = body.replace("%s", "51");
-    } else if (ex instanceof NoBalanceFoundException) {
+    if (ex instanceof InsuficientAmountException iam) {
+      body = body.replace("%s", iam.getCode());
+    } else {
       body = body.replace("%s", "07");
     }
 

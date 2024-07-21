@@ -2,7 +2,6 @@ package tech.caju.authorizer.balance;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,7 +11,7 @@ public class BalanceService {
   private final BalanceRepository balanceRepository;
 
   public Optional<Balance> getBalanceFromAccountByMcc(Long accountId, String mcc) {
-    return Optional.ofNullable(balanceRepository.getBalanceFromAccount(accountId, mcc));
+    return Optional.ofNullable(balanceRepository.getBalanceFromAccountByMcc(accountId, mcc));
   }
 
   public Optional<Balance> getBalanceCashFromAccount(Long accountId) {

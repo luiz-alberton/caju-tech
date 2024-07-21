@@ -12,6 +12,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import tech.caju.authorizer.account.Account;
 import tech.caju.authorizer.category.Category;
@@ -21,6 +22,7 @@ import tech.caju.authorizer.category.Category;
 @SequenceGenerator(name = "balance", sequenceName = "bal_seq", allocationSize = 1)
 @Getter
 @Setter
+@NoArgsConstructor
 public class Balance {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "balance")
@@ -39,5 +41,14 @@ public class Balance {
     @OneToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
+
+    public Balance(Long id, Long version, Amount amount, Long accountId, Long categoryId) {
+        this.id = id;
+        this.version = version;
+        this.amount = amount;
+        this.account = new Account(accountId);
+        this.category = new Category(categoryId);
+    }
 
 }

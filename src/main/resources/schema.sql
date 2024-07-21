@@ -66,10 +66,7 @@ create table if not exists transaction (
     id bigserial not null,
     account_id bigserial not null,
     total_amount integer not null,
-    classification_id bigserial not null,
-    merchant_id bigserial not null,
-    primary key (id),
-    foreign key (account_id) references account(id),
-    foreign key (classification_id) references classification(id),
-    foreign key (merchant_id) references merchant(id)
+    mcc text not null,
+    merchant_name text not null,
+    primary key (id)
 );

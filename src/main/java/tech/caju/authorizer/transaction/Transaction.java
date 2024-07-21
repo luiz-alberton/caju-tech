@@ -11,11 +11,8 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
-import tech.caju.authorizer.account.Account;
 import tech.caju.authorizer.balance.Amount;
 import tech.caju.authorizer.balance.AmountConverter;
-import tech.caju.authorizer.classification.Classification;
-import tech.caju.authorizer.merchant.Merchant;
 
 @Entity
 @Table(name = "transaction")
@@ -29,14 +26,15 @@ public class Transaction implements Serializable {
   private Long id;
 
   @Column(name = "account_id")
-  private Account account;
+  private Long account;
 
   @Column(name = "total_amount")
   @Convert(converter = AmountConverter.class)
   private Amount totalAmount;
 
-  private Classification mcc;
+  private String mcc;
 
-  private Merchant merchant;
+  @Column(name = "merchant_name")
+  private String merchant;
 
 }

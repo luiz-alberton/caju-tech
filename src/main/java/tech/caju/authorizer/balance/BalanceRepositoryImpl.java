@@ -13,11 +13,11 @@ public class BalanceRepositoryImpl implements BalanceRepositoryCustom {
   EntityManager em;
 
   @Override
-  public Balance getBalanceFromAccount(Long accountId, String mcc) {
+  public Balance getBalanceFromAccountByMcc(Long accountId, String mcc) {
 
     var sql = """
         SELECT
-          b
+          new Balance(b.id, b.version, b.amount, a.id, cat.id)
         FROM
           Balance b
         JOIN
@@ -46,7 +46,7 @@ public class BalanceRepositoryImpl implements BalanceRepositoryCustom {
   public Balance getBalanceCashFromAccount(Long accountId) {
     var sql = """
         SELECT
-          b
+          new Balance(b.id, b.version, b.amount, a.id, cat.id)
         FROM
           Balance b
         JOIN
@@ -73,7 +73,7 @@ public class BalanceRepositoryImpl implements BalanceRepositoryCustom {
   public Balance getBalanceCategoryFromMerchant(Long accountId, String merchant) {
     var sql = """
         SELECT
-          b
+          new Balance(b.id, b.version, b.amount, a.id, cat.id)
         FROM
           Balance b
         JOIN
