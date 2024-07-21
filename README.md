@@ -1,7 +1,5 @@
 # Desafio técnico Caju #
 
----
-
 Instruções do desafio podem ser encontradas no link: 
 [Desafio tecnico para fazer em casa](https://caju.notion.site/Desafio-T-cnico-para-fazer-em-casa-218d49808fe14a4189c3ca664857de72) 
 
